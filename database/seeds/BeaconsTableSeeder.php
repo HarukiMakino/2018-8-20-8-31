@@ -13,14 +13,19 @@ class BeaconsTableSeeder extends Seeder
     {
         DB::table('beacons')->insert([
             [
-                'major'=>'メジャー',
-                'minor'=>'マイナー',
-                'position'=>'ポジション',
+                'major'=>'1111',
+                'minor'=>'1111',
+                'position'=>'埼玉県',
+            ],
+            [
+                'major'=>'2222',
+                'minor'=>'2222',
+                'position'=>'静岡県',
             ],
             [
                 'major'=>'3333',
                 'minor'=>'3333',
-                'position'=>'position',
+                'position'=>'岡山県',
             ]
         ]);
     }

@@ -14,7 +14,7 @@ class EmployeeGetController extends Controller
     {
 
         $users = DB::table('employees')->select('family_name', 'given_name','family_name_kana','given_name_kana','position')
-            ->where('family_name',$Request_family_name)->where('given_name',$Request_given_name)->first();
+            ->where('family_name',$Request_family_name)->where('given_name',$Request_given_name)->get()->first();
 
         if($users)
         {

@@ -20,6 +20,7 @@ class EmployeesTableSeeder extends Seeder
             'division_id' => '',
             'birthday' => '1998/11/9',
             'hire_date' => '2020/1/1',
+            'position'=>'岡山',
                 ]
             ,[
                 'family_name' => '鈴鹿',
@@ -27,9 +28,9 @@ class EmployeesTableSeeder extends Seeder
                 'family_name_kana' => 'すずか',
                 'given_name_kana' => 'ゆうた',
                 'division_id' => '',
-                'birthday' => '1998/11/9',
-                'hire_date' => '2020/1/1',
-
+                'birthday' => '1900/1/1',
+                'hire_date' => '1950/1/1',
+                'position'=>'東京',
             ]
         ]);
     }

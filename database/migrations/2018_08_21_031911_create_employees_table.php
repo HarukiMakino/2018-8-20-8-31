@@ -25,7 +25,7 @@ class CreateEmployeesTable extends Migration
             $table->string('division_id', 100);
             $table->date('birthday');
             $table->date('hire_date');
-            $table->string('position', 100)->nullable();
+            $table->string('position', 100);
             $table->timestamp('positioned_at')->nullable();
 
             $table->timestamps();

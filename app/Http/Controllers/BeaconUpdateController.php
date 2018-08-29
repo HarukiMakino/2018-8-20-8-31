@@ -14,17 +14,32 @@ class BeaconUpdateController extends Controller
         $Request_minor = $request->input('minor');
 
         $users = DB::table('employees')->select('position', 'positioned_at')
-            ->where('family_name', $Request_family_name)->where('given_name', $Request_given_name)->first();
+            ->where('family_name', $Request_family_name)->where('given_name', $Request_given_name)->get()->first();
 
         $beacons = DB::table('beacons')->select('major', 'minor', 'position')
             ->where('major', $Request_major)->where('minor', $Request_minor)->first();
 
         if ($users && $beacons) {
-            dump($users);
+//            dump($users);
+
+
+            DB::table('employees')
+                ->where('family_name', $Request_family_name)->where('given_name', $Request_given_name)
+                ->update(['position' => $beacons->position]);
+
+
+            DB::table('employees')
+                ->where('family_name', $Request_family_name)->where('given_name', $Request_given_name)
+                ->update(['positioned_at' => date("Y/m/d H:i:s")]);
+/*
             $users->position = $beacons->position;
             $users->positioned_at = date("Y/m/d H:i:s");
+            $users->save();
 
-            dump($users);
+            $users = DB::table('employees')->select('position', 'positioned_at')
+                ->where('family_name', $Request_family_name)->where('given_name', $Request_given_name)->get()->first();
+*/
+//            dump($users);
 
 
             return response('success');
