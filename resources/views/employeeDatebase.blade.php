@@ -9,8 +9,25 @@
 <h1>従業員一覧</h1>
 
 
-<br><a href="home">戻る</a>
+<a href="home">戻る</a><br><br>
 
+
+
+<form action="/employeeDatebase" method="get">
+    <select name="select">
+        <option name="id">ID順</option>
+        <option name="family_name">苗字順</option>
+        <option name="birthday">誕生日順</option>
+        <option name="hire_date">就職日順</option>
+        <option name="position">場所順</option>
+    </select>
+
+    <select name="sort">
+        <option name="asce">昇順</option>
+        <option name="desc">降順</option>
+    </select>
+    <p><input type="submit"value="並び替え"></p>
+</form>
 
 <table border="1">
     <tr>

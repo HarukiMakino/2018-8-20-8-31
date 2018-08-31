@@ -13,6 +13,8 @@
 
 
     //html作成！！！
+use Illuminate\Http\Request;
+
 Route::get('/home', function () {
     return view('home');
 })->name('home');
@@ -22,13 +24,96 @@ Route::get('/todo', function () {
 });
 
 //データベース表示
-Route::get('/employeeDatebase', function () {
+Route::get('/employeeDatebase', function (Request $request) {
+    $employees = DB::select('select * from employees');
+    //$data = employee::all(); //全件取得
+    $request_query = $request->input('select');
+    $request_sort = $request->input('sort');
+
+
+    if ($request_query == "ID順" && $request_sort == "昇順") {
+        $employees->sortBy('id')->values();
+        return view('employeeDatebase', [
+            'employees' => $employees
+        ]);
+    }
+    if ($request_query == "ID順" && $request_sort == "降順") {
+        $employees->sortByDesc('id')->values();
+        return view('employeeDatebase', [
+            'employees' => $employees
+        ]);
+    }
+    if ($request_query == "苗字順" && $request_sort == "昇順") {
+        $employees->sortBy('family_name')->values();
+        return view('employeeDatebase', [
+            'employees' => $employees
+        ]);
+    }
+    if ($request_query == "苗字順" && $request_sort == "降順") {
+        $employees->sortByDesc('family_name')->values();
+        return view('employeeDatebase', [
+            'employees' => $employees
+        ]);
+
+    }
+    if ($request_query == "誕生日順" && $request_sort == "昇順") {
+        $employees->sortBy('birthday')->values();
+        return view('employeeDatebase', [
+            'employees' => $employees
+        ]);
+    }
+    if ($request_query == "誕生日順" && $request_sort == "降順") {
+        $employees->sortByDesc('birthday')->values();
+        return view('employeeDatebase', [
+            'employees' => $employees
+        ]);
+    }
+    if ($request_query == "就職日順" && $request_sort == "昇順") {
+        $employees->sortBy('hire_date')->values();
+        return view('employeeDatebase', [
+            'employees' => $employees
+        ]);
+    }
+    if ($request_query == "就職日順" && $request_sort == "降順") {
+        $employees->sortByDesc('hire_date')->values();
+        return view('employeeDatebase', [
+            'employees' => $employees
+        ]);
+    }
+    if ($request_query == "場所順" && $request_sort == "昇順") {
+        $employees->sortBy('position')->values();
+        return view('employeeDatebase', [
+            'employees' => $employees
+        ]);
+    }
+    if ($request_query == "場所順" && $request_sort == "降順") {
+        $employees->sortBy('position')->values();
+        return view('employeeDatebase', [
+            'employees' => $employees
+        ]);
+   }
+
+    return view('employeeDatebase', [
+            'employees' => $employees
+    ]);
+});
+
+//Route::get('/employeeDatebase/{request_query}/{request_sort}/',function($request_query,$request_sort) {
+
+//    $employees =DB::select('select * from employees');
+
+
+
+
+/*
     $employees =DB::select('select * from employees');
     //$data = employee::all(); //全件取得
     return view('employeeDatebase',[
         'employees'=>$employees
     ]);
-});
+*/
+
+
 
 
 //データベース検索
@@ -40,6 +125,9 @@ Route::get('/employees', function () {
     ]);
 });
 Route::get('/employeeSearch', 'EmployeeSearchController@store');
+
+
+
 
 //データベース更新
 Route::get('/update', function () {
