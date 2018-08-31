@@ -12,7 +12,7 @@ class EmployeeGetController extends Controller
     //
     public function store(Request $request, $Request_family_name, $Request_given_name)
     {
-
+        dd($request);
         $users = DB::table('employees')->select('family_name', 'given_name','family_name_kana','given_name_kana','position')
             ->where('family_name',$Request_family_name)->where('given_name',$Request_given_name)->get()->first();
 

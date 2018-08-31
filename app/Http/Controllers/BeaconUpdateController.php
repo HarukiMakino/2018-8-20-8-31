@@ -20,7 +20,6 @@ class BeaconUpdateController extends Controller
             ->where('major', $Request_major)->where('minor', $Request_minor)->first();
 
         if ($users && $beacons) {
-//            dump($users);
 
 
             DB::table('employees')
@@ -31,16 +30,6 @@ class BeaconUpdateController extends Controller
             DB::table('employees')
                 ->where('family_name', $Request_family_name)->where('given_name', $Request_given_name)
                 ->update(['positioned_at' => date("Y/m/d H:i:s")]);
-/*
-            $users->position = $beacons->position;
-            $users->positioned_at = date("Y/m/d H:i:s");
-            $users->save();
-
-            $users = DB::table('employees')->select('position', 'positioned_at')
-                ->where('family_name', $Request_family_name)->where('given_name', $Request_given_name)->get()->first();
-*/
-//            dump($users);
-
 
             return response('success');
         } else if ($users && !$beacons) {

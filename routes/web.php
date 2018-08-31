@@ -10,9 +10,53 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+
+    //html作成！！！
 Route::get('/home', function () {
     return view('home');
+})->name('home');
+
+Route::get('/todo', function () {
+    return view('todo');
 });
+
+//データベース表示
+Route::get('/employeeDatebase', function () {
+    $employees =DB::select('select * from employees');
+    //$data = employee::all(); //全件取得
+    return view('employeeDatebase',[
+        'employees'=>$employees
+    ]);
+});
+
+
+//データベース検索
+
+Route::get('/employees', function () {
+    $employees =DB::select('select * from employees');
+    return view('employeeSearch',[
+        'employees'=>$employees
+    ]);
+});
+Route::get('/employeeSearch', 'EmployeeSearchController@store');
+
+//データベース更新
+Route::get('/update', function () {
+    $employees =DB::select('select * from employees');
+    return view('employeeUpdate',[
+        'employees'=>$employees
+    ]);
+});
+Route::get('/employeeUpdate', 'EmployeeUpdateController@store');
+Route::post('/rewrite', 'EmployeeReriteController@store');
+
+
+
+
+
+//インターンの内容
+
 
 Route::get('/', function () {
     return view('welcome');
